@@ -1,14 +1,14 @@
 
 package com.mycompany.tp_poo_version1;
 
-public abstract class TEST {
+public abstract class Test {
 
 	private String nom;
 	private int capacite;
 	float scoreTotal = 0;
 	private String conclusion;
 
-	public TEST(String nom, int capacite, String conclusion) {
+	public Test(String nom, int capacite, String conclusion) {
 		this.nom = nom;
 		this.capacite = capacite;
 		this.conclusion = conclusion;

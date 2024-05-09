@@ -6,14 +6,12 @@ package com.mycompany.tp_poo_version1;
 
 import java.util.ArrayList;
 
-/**
- *
- * @author Rafika MK
- */
-public class TESTEXERCICES extends TEST {
-	ArrayList<EXERCICE> exercices;
 
-	public TESTEXERCICES (String nom, int capacite, String conclusion, ArrayList<EXERCICE> exercices) {
+public class TestExercices extends Test {
+	ArrayList<Exercice> exercices;
+
+
+	public TestExercices(String nom, int capacite, String conclusion, ArrayList<Exercice> exercices) {
 		super(nom, capacite, conclusion);
 		this.exercices = exercices;
 	}
@@ -22,7 +20,7 @@ public class TESTEXERCICES extends TEST {
 	@Override
 	public float calculeScoreTotal() {
 
-		for (EXERCICE ex : exercices) {
+		for (Exercice ex : exercices) {
 			scoreTotal = +ex.calculeMoyenne();
 
 		}
@@ -30,15 +28,15 @@ public class TESTEXERCICES extends TEST {
 	}
 
 	public void ajouterExercies(String consigne, String nomMateriel, float scores[]) {
-		EXERCICE exercice = new EXERCICE(consigne, nomMateriel, scores);
+		Exercice exercice = new Exercice (consigne, nomMateriel, scores);
 		exercices.add(exercice);
 
 	}
 
 	public int rechercherExercices(String consigne) {
 		int pos = 0;
-		for (EXERCICE ex : exercices) {
-			if (ex.equals(ex) == true) {
+		for (Exercice ex : exercices) {
+			if (ex.equals(consigne) == true) {
 				break;
 			}
 			pos++;

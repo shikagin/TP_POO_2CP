@@ -1,13 +1,13 @@
 
 package com.mycompany.tp_poo_version1;
 
-public class EXERCICE {
+public class Exercice{
 
 	private String consigne;
 	private String nomMateriel;
 	private float[] score = new float[10];
 
-	public EXERCICE(String consigne, String nomMateriel, float score[]) {
+	public Exercice(String consigne, String nomMateriel, float score[]) {
 		this.consigne = consigne;
 		this.nomMateriel = nomMateriel;
 		this.score = score;
