@@ -3,7 +3,7 @@ package com.mycompany.tp_poo_version1;
 public class BO {
 
     private Anamnese anamnese;
-    //private EpreuveClinique[] listeEpreuves;
+    private EpreuveClinique[] listeEpreuves;
     private Diagnostic diagnostic;
     private String projetTherapeutique;
     private String numTel;
@@ -22,13 +22,13 @@ public class BO {
         this.anamnese = anamnese;
     }
 
- /*   public EpreuveClinique[] getListeEpreuves() {
+    public EpreuveClinique[] getListeEpreuves() {
         return listeEpreuves;
     }
 
     public void setListeEpreuves(EpreuveClinique[] listeEpreuves) {
         this.listeEpreuves = listeEpreuves;
-    }*/
+    }
 
     public Diagnostic getDiagnostic() {
         return diagnostic;

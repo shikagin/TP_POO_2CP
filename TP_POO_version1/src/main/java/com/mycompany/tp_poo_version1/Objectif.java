@@ -3,9 +3,9 @@ package com.mycompany.tp_poo_version1;
 // La classe qui génère les objectifs à ajouter aux listes de suivi
 
 public class Objectif {
-	String nom ;
-	TypeObj type ;
-	int note ;
+	private String nom ;
+	private TypeObj type ;
+	private int note ;
 	
 	
 	public Objectif(String nom, String type, int note) {

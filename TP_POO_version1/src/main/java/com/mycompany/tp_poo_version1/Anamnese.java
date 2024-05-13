@@ -19,7 +19,7 @@ public class Anamnese {
             listeQuestions.remove(ancienneQuestion);
             listeQuestions.add(nouvelleQuestion);
         } else {
-            System.out.println("La question � modifier n'existe pas dans la liste.");
+            System.out.println("La question à modifier n'existe pas dans la liste.");
         }
     }
 
