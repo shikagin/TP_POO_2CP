@@ -5,7 +5,7 @@ public abstract class Test {
 
 	private String nom;
 	private int capacite;
-	float scoreTotal = 0;
+	private float scoreTotal = 0;
 	private String conclusion;
 
 	public Test(String nom, int capacite, String conclusion) {
