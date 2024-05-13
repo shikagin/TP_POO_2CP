@@ -2,13 +2,16 @@ package com.mycompany.tp_poo_version1;
 
 public class Trouble {
 
-	private String nom;
-
-	private TypeTroubles categorie;
-
-	public Trouble(String nom, TypeTroubles categorie) {
-		this.nom = nom;
-		this.categorie = categorie;
+	private String nom ;
+	private CatTrouble categorie ;
+	
+	public Trouble(String nom, String categorie) {
+		this.nom = nom ;
+		switch (categorie) {
+		case "Trouble de déglutition" : this.categorie = CatTrouble.Deglutition ;
+		case "Trouble neuro-dévloppemental" : this.categorie = CatTrouble.NeuroDevloppemental ;
+		case "Trouble cognitif" : this.categorie = CatTrouble.Cognitif ;
+		}
 	}
 
 	public String getNom() {
@@ -18,9 +21,9 @@ public class Trouble {
 	public String getCategorie() {
 
 		return switch (this.categorie) {
-			case TROUBLE_DEGLUTITION -> "trouble de la d�glutition";
-			case TROUBLE_NEURO_DEVELOPPEMENTAL -> "trouble neuro-d�veloppemental";
-			case TROUBLE_COGNITIF -> "trouble cognitif";
+			case Deglutition -> "trouble de la déglutition";
+			case NeuroDevloppemental -> "trouble neuro-développemental";
+			case Cognitif -> "trouble cognitif";
 			default -> "";
 		};
 	}
@@ -32,4 +35,5 @@ public class Trouble {
 	public void setCategorie(TypeTroubles categorie) {
         this.categorie = categorie;
     }
+
 }
