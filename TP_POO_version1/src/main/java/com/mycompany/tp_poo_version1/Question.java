@@ -9,8 +9,8 @@ public class Question {
         this.enonce=enonce ; 
     }
 
-    //pour que l'ortophoniste puisse saisir le score et renovoyer une exception 
-    public void saisirScore() throws InvalidScoreException{ 
+    //pour que l'ortophoniste puisse saisir le score 
+    public void saisirScore() throws InvalidScoreException { 
         int score ; 
         Scanner sc = new Scanner(System.in) ; 
         System.out.println("Veuillez saisir le score : ");
@@ -18,9 +18,10 @@ public class Question {
         //condition pour tester que le score suit la norme précisée 
         if (score < 1 || score > 10) {
             throw new InvalidScoreException("Score must be between 1 and 10.");
-        }else {
+        } else {
         setScore(score);
         }
+        sc.close();
     }
 
     //Les affichages 

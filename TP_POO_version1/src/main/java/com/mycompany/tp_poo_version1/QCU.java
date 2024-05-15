@@ -27,14 +27,14 @@ public class QCU extends Question{
 	public void setReponse(String reponse) {
 		this.reponse = reponse;
 	}
+
 	public QCU(String enonce) {
 		super(enonce);
-		reponsesFausses=new ArrayList<String>();
-		
-		// TODO Auto-generated constructor stub
+		reponsesFausses=new ArrayList<>();
 	}
+
 	public float evaluer() {
-		if(reponse==reponseJuste)return 1;
+		if (reponse.equals(reponseJuste)) return 1;
 		return 0;
 	}
 	public void ajoutRepFausse(String reponse) {

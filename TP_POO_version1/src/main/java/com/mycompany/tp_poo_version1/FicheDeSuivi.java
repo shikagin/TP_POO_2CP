@@ -9,7 +9,7 @@ public class FicheDeSuivi {
 	public int numFiche ;
 	
 	public FicheDeSuivi() {
-		listeObjectifs = new ArrayList<Objectif>();
+		listeObjectifs = new ArrayList<>();
 		this.atteint = false ; // les objectifs ne sont pas atteints initialement
 	}
 	
@@ -55,6 +55,16 @@ public class FicheDeSuivi {
         listeObjectifs.remove(objectif);
     }
 	
+	// Méthode de modification d'un objectif 
+	public void modifierObjectif(Objectif ancienObjectif, Objectif nouvelObjectif) {
+        if (listeObjectifs.contains(ancienObjectif)) {
+            listeObjectifs.remove(ancienObjectif);
+            listeObjectifs.add(nouvelObjectif);
+        } else {
+            System.out.println("L'objectif' à modifier n'existe pas dans la liste.");
+        }
+    }
+
 	
     // Méthode pour afficher tous les objectifs dans la fiche de suivi
     public void afficherListeObjectifs() {

@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "TP_POO_2CP",
+			"path": "."
+		}
+	],
+	"settings": {
+		"java.dependency.packagePresentation": "hierarchical"
+	}
+}

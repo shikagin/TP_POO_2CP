@@ -4,14 +4,11 @@ import java.util.ArrayList;
 public class EpreuveClinique {
 	
     private String [] observationClinique ; 
-    private ArrayList <Test> listeTests ; 
+    private final ArrayList <Test> listeTests ; 
     
     public EpreuveClinique(String [] observationClinique){
-        this.observationClinique=observationClinique;
+        this.observationClinique = observationClinique;
         this.listeTests= new ArrayList<>();
-
     }
-
-
     
 }

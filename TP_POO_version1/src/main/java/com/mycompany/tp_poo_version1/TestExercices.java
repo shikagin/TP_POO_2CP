@@ -19,7 +19,6 @@ public class TestExercices extends Test {
 	
 	@Override
 	public float calculeScoreTotal() {
-
 		for (Exercice ex : exercices) {
 			scoreTotal = +ex.calculeMoyenne();
 

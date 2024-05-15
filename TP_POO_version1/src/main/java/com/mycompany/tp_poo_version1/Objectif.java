@@ -12,9 +12,9 @@ public class Objectif {
 		this.nom = nom ;
 		this.note = 1 ; //La note est initialisée à 1 lorsque l'objectif est crée
 		switch (type) {
-			case "Court terme" : this.type = TypeObj.CourtTerme ; break ;
-			case "Moyen terme" : this.type = TypeObj.MoyenTerme ; break ;
-			case "Long terme" : this.type = TypeObj.LongTerme ; break ;
+			case "Court terme" -> this.type = TypeObj.CourtTerme ;
+			case "Moyen terme" -> this.type = TypeObj.MoyenTerme ;
+			case "Long terme" -> this.type = TypeObj.LongTerme ;
 		}
 	}
 	

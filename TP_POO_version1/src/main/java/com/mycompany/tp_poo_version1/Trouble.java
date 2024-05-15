@@ -32,7 +32,7 @@ public class Trouble {
 		this.nom = nom;
 	}
 	
-	public void setCategorie(TypeTroubles categorie) {
+	public void setCategorie(CatTrouble categorie) {
         this.categorie = categorie;
     }
 
