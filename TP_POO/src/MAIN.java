@@ -15,11 +15,13 @@ public class MAIN {
 
 	        if (choix == 1) {
 	            app.creerNouveauCompte();
+				break ;
 	        } else if (choix == 2) {
 	            Orthophoniste orthophoniste = app.authentifierUtilisateur();
 	            if (orthophoniste != null) {
 	                app.menuOrthophoniste(orthophoniste);
 	            }
+				break ;
 	        } else if (choix == 3) {
 	            System.out.println("Au revoir!");
 	            break;
