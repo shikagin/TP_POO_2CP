@@ -1,4 +1,3 @@
-package com.mycompany.tp_poo_version1;
 
 import java.util.*;
 
@@ -25,6 +24,24 @@ public class Anamnese {
 
     public void supprimerQuestion(QstLibreAnamnese question) {
         listeQuestions.remove(question);
+    }
+    
+    
+    // Méthode d'affichage d'une anamnèse
+    public void afficherAnamnese() {
+        if (listeQuestions.isEmpty()) {
+            System.out.println("Aucune question dans l'anamnèse.");
+        } else {
+            for (QstLibreAnamnese question : listeQuestions) {
+                if (question instanceof QstLibreAnamneseEnfant) {
+                    ((QstLibreAnamneseEnfant) question).afficherQuestion();
+                } else if (question instanceof QstLibreAnamneseAdulte) {
+                    ((QstLibreAnamneseAdulte) question).afficherQuestion();
+                } else {
+                    System.out.println("Type de question inconnu.");
+                }
+            }
+        }
     }
 
 }

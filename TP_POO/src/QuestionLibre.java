@@ -1,4 +1,3 @@
-package com.mycompany.tp_poo_version1;
 
 public class QuestionLibre extends Question {
     protected String reponse ;

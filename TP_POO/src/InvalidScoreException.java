@@ -1,4 +1,5 @@
-package com.mycompany.tp_poo_version1;
+
+@SuppressWarnings("serial")
 
 public class InvalidScoreException extends Exception {
         public InvalidScoreException(String message) {

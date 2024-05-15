@@ -1,6 +1,4 @@
 
-package com.mycompany.tp_poo_version1;
-
 public class Exercice{
 
 	private String consigne;

@@ -1,6 +1,6 @@
-package com.mycompany.tp_poo_version1;
 
 import java.util.ArrayList;
+
 public class Questionnaire  extends Test {    //extends Test : add it when u push 
     private ArrayList<Question> listeQuestion ; 
 

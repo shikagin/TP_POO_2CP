@@ -1,5 +1,3 @@
-package com.mycompany.tp_poo_version1;
-
 import java.util.*;
 
 public class Diagnostic {
@@ -29,6 +27,17 @@ public class Diagnostic {
         listeTroubles.remove(trouble);
 	}
 
-    // Une méthode pour modifier un trouble is needed hh
-
+	// Méthode d'affichage d'un diagnostic
+    public void afficherDiagnostic() {
+        System.out.println("Diagnostic :");
+        System.out.println("-----------------");
+        if (listeTroubles.isEmpty()) {
+            System.out.println("Aucun trouble diagnostiqué.");
+        } else {
+            for (Trouble trouble : listeTroubles) {
+                trouble.afficherTrouble();
+            }
+        }
+        System.out.println("-----------------");
+    }
 }
