@@ -100,7 +100,7 @@ public class ApplicationCabinetOrthophonique {
             System.out.println("3. Se déconnecter");
             System.out.print("Choisir une option: ");
             int choix = sc.nextInt();
-            sc.nextLine();  // Consommer le saut de ligne
+            sc.nextLine(); 
 
             if (choix == 1) {
                 orthophoniste.AjouterPatient();

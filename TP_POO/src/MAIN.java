@@ -11,7 +11,7 @@ public class MAIN {
 	        System.out.println("3. Quitter");
 	        System.out.print("Choisir une option: ");
 	        int choix = sc.nextInt();
-	        sc.nextLine();  // Consume the newline character after nextInt()
+	        sc.nextLine(); 
 
 	        if (choix == 1) {
 	            app.creerNouveauCompte();
