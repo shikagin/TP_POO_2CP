@@ -6,8 +6,8 @@ public class TestExercices extends Test {
 	ArrayList<Exercice> exercices;
 
 
-	public TestExercices(String nom, int capacite, String conclusion) {
-		super(nom, capacite, conclusion);
+	public TestExercices(String nom, int capacite) {
+		super(nom, capacite);
 		this.exercices = new ArrayList<Exercice>() ;
 	}
 
@@ -24,8 +24,7 @@ public class TestExercices extends Test {
 	}
 
 	// Méthode d'ajout d'un exercice à la liste des exercices
-	public void ajouterExercice(String consigne, String nomMateriel, float scores[]) {
-		Exercice exercice = new Exercice (consigne, nomMateriel, scores);
+	public void ajouterExercice(Exercice exercice) {
 		exercices.add(exercice);
 	}
 

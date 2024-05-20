@@ -6,20 +6,16 @@ public abstract class Test {
 	protected float scoreTotal = 0;
 	private String conclusion;
 
-	public Test(String nom, int capacite, String conclusion) {
+	public Test(String nom, int capacite) {
 		this.nom = nom;
 		this.capacite = capacite;
-		this.conclusion = conclusion;
-
 	}
 	
 	
 	// Méthode d'affichage d'un test
-	public void afficherTest() {
-		// A COMPLETER
-	}
+	public  void afficherTest() {};
+		
 	
-
 	public String getNom() {
 		return (this.nom);
 

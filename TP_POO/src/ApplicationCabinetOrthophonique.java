@@ -4,11 +4,11 @@ import java.util.regex.Matcher;
 
 public class ApplicationCabinetOrthophonique {
 	// L'application contient les comptes des orthophonistes qui la utilisent 
-	private ArrayList<Orthophoniste> comptesUtilisateurs ;
+	private HashSet<Orthophoniste> comptesUtilisateurs ;
 	
 	// Initialisation de la liste des comptes d'utilisateurs
 	public ApplicationCabinetOrthophonique() {
-		comptesUtilisateurs = new ArrayList<Orthophoniste>() ;
+		comptesUtilisateurs = new HashSet<Orthophoniste>() ;
 	}
 	
 	
@@ -81,6 +81,7 @@ public class ApplicationCabinetOrthophonique {
         
         for (Orthophoniste orthophoniste : comptesUtilisateurs) {
             if (orthophoniste.getAdresseEmail().equals(adresseEmail) && orthophoniste.getMotDePass().equals(motDePass)) {
+            	orthophoniste.setConnecte(true);
                 System.out.println("Authentification réussie !");
                 return orthophoniste;
             }
@@ -90,6 +91,40 @@ public class ApplicationCabinetOrthophonique {
         return null ;
     }
     
+    
+    //Méthode pour supprimer un compte orthophoniste
+ // Méthode de suppression d'un orthophoniste 
+    public void supprimerOrthophoniste() {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("Saisir le nom de l'orthophoniste à supprimer: ");
+        String nomOrthophoniste = sc.nextLine();
+        
+        System.out.print("Saisir le prénom de l'orthophoniste à supprimer: ");
+        String prenomOrthophoniste = sc.nextLine();
+        
+        Orthophoniste orthophonisteASupprimer = null;
+        
+        // Recherche de l'orthophoniste dans la liste (critère : nom & prénom)
+        for (Orthophoniste orthophoniste : comptesUtilisateurs) {
+            if (orthophoniste.getNom().equalsIgnoreCase(nomOrthophoniste) && 
+                orthophoniste.getPrenom().equalsIgnoreCase(prenomOrthophoniste)) {
+                orthophonisteASupprimer = orthophoniste;
+                break;
+            }
+        }
+        
+        if (orthophonisteASupprimer != null) {
+            // Orthophoniste trouvé dans la liste
+            comptesUtilisateurs.remove(orthophonisteASupprimer);
+            System.out.println("Orthophoniste supprimé avec succès !");
+        } else {
+            // L'orthophoniste n'existe pas dans la liste
+            System.out.println("Orthophoniste non trouvé !");
+        }
+        
+        sc.close();
+    }
     
     // Menu à afficher pour l'orthophoniste après l'authentification
     public void menuOrthophoniste(Orthophoniste orthophoniste) {
@@ -107,6 +142,7 @@ public class ApplicationCabinetOrthophonique {
             } else if (choix == 2) {
                 orthophoniste.SupprimerPatient();
             } else if (choix == 3) {
+            	orthophoniste.setConnecte(false);
                 System.out.println("Déconnexion réussie!");
                 break;
             } else {

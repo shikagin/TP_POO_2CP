@@ -4,7 +4,7 @@ public class BOEnfant extends BO {
     private String numTelParents ;
 
     public BOEnfant(Anamnese anamnese, Diagnostic diagnostic, String projetTherapeutique, String numTel, String classeEtude) {
-        super(anamnese,diagnostic,projetTherapeutique);
+        super(anamnese);
         this.classeEtude = classeEtude;
         numTelParents = numTel ;
     }

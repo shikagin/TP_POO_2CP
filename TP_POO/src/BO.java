@@ -6,10 +6,8 @@ public class BO {
     private Diagnostic diagnostic;
     private String projetTherapeutique;
 
-    public BO (Anamnese anamnese, Diagnostic diagnostic, String projetTherapeutique) {
+    public BO (Anamnese anamnese) {
         this.anamnese = anamnese;
-        this.diagnostic = diagnostic;
-        this.projetTherapeutique = projetTherapeutique;
     }
     
     // Méthode d'affichage d'un bilan orthophonique

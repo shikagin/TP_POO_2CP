@@ -5,10 +5,9 @@ public class Exercice{
 	private String nomMateriel;
 	private float[] score = new float[10];
 
-	public Exercice(String consigne, String nomMateriel, float score[]) {
+	public Exercice(String consigne, String nomMateriel) {
 		this.consigne = consigne;
 		this.nomMateriel = nomMateriel;
-		this.score = score;
 	}
 
 	public String getcConsigne() {

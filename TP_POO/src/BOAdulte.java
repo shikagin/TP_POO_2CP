@@ -6,7 +6,7 @@ public class BOAdulte extends BO {
     private String numTelPersonnel ;
 
     public BOAdulte(Anamnese anamnese, Diagnostic diagnostic, String projetTherapeutique, String numTel, String diplome, String profession) {
-        super(anamnese,diagnostic,projetTherapeutique);
+        super(anamnese);
         this.diplome = diplome;
         this.profession = profession;
         numTelPersonnel = numTel ;

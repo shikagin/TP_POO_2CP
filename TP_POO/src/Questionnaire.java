@@ -5,8 +5,8 @@ public class Questionnaire  extends Test {    //extends Test : add it when u pus
     private ArrayList<Question> listeQuestion ; 
 
 
-    public Questionnaire(String nom, int capacite, String conclusion) {
-        super(nom, capacite, conclusion);
+    public Questionnaire(String nom, int capacite) {
+        super(nom, capacite);
         this.listeQuestion = new ArrayList<>();
     }
 
@@ -18,8 +18,7 @@ public class Questionnaire  extends Test {    //extends Test : add it when u pus
         this.listeQuestion = listeQuestion;
     }
 
-    public void addQuestion(String enonce) {
-        Question qst = new Question(enonce);
+    public void addQuestion(Question qst) {
         listeQuestion.add(qst);
     }
 

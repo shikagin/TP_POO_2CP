@@ -5,7 +5,8 @@ public class MAIN {
 	    ApplicationCabinetOrthophonique app = new ApplicationCabinetOrthophonique();
 
 	    Scanner sc = new Scanner(System.in);
-	    while (true) {
+	    boolean MenuBool =true;
+	    while (MenuBool) {
 	        System.out.println("1. Créer un nouveau compte");
 	        System.out.println("2. Se connecter");
 	        System.out.println("3. Quitter");
@@ -14,20 +15,22 @@ public class MAIN {
 	        sc.nextLine(); 
 
 	        if (choix == 1) {
-	            app.creerNouveauCompte();
-				break ;
-	        } else if (choix == 2) {
+	            app.creerNouveauCompte();		
+	        } 
+	        if (choix == 2) {
 	            Orthophoniste orthophoniste = app.authentifierUtilisateur();
 	            if (orthophoniste != null) {
 	                app.menuOrthophoniste(orthophoniste);
 	            }
-				break ;
-	        } else if (choix == 3) {
+				
+	        } if (choix == 3) {
+	        	MenuBool=false;
 	            System.out.println("Au revoir!");
-	            break;
-	        } else {
+	           
+	        } if(choix>3) {
 	            System.out.println("Option invalide. Veuillez réessayer.");
 	        }
+	        
 	    }
 	    sc.close() ;
 	}

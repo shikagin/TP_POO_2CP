@@ -11,11 +11,11 @@ public class Dossier {
     private String adresse ;
     private String dateDeNaissance ;
     private String lieuDeNaissance ;
-    
+    private ArrayList<Test> listeTest;
     // Dossier médicale du patient
     private ArrayList<BO> listeBOs ;
     private ArrayList<FicheDeSuivi> historiqueFichesSuivi ;
-    // private ArrayList<RendezVous> listeRendezVous ;
+     private ArrayList<RendezVous> listeRendezVous ;
     
     public Dossier(String nom, String prenom, int age, String adresse, String dateDeNaissance, String lieuDeNaissance ) {
     	numDossier++ ; // le numéro du dossier s'incrémente chaque fois qu'on ajoute un patient
@@ -28,7 +28,7 @@ public class Dossier {
     	
     	listeBOs = new ArrayList<BO>() ;
     	historiqueFichesSuivi = new ArrayList<FicheDeSuivi>() ;
-    	// listeRendezVous = new ArrayList<RendezVous>() ;
+        listeRendezVous = new ArrayList<RendezVous>() ;
     }
     
     
@@ -72,5 +72,13 @@ public class Dossier {
     
     public int getAge() {
     	return age ;
+    }
+    
+    public ArrayList<BO> getListeBOs(){
+    	return this.listeBOs;
+    }
+    
+    public void setListeBOs (ArrayList<BO> listeBO) {
+    	this.listeBOs=listeBO;
     }
 }

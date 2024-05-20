@@ -28,6 +28,16 @@ public class EpreuveClinique {
             System.out.println("Le test que vous voulez supprimer n'existe pas.");
         }
     }
+    
+    // Méthode pour modifier un test 
+    public void modifierTest(Test ancienTest, Test nouveauTest) {
+    	if (listeTests.contains(ancienTest)) {
+            listeTests.remove(ancienTest);
+            listeTests.add(nouveauTest);
+        } else {
+            System.out.println("La question à modifier n'existe pas dans la liste.");
+        }
+    }
 
     // Méthode d'ajout d'une observation
     public void ajouterObservation(String nouvelleObservation) {
@@ -83,4 +93,8 @@ public class EpreuveClinique {
             }
         }
     }
+   
+   public ArrayList<Test> getListeTests (){
+	   return this.listeTests;
+   }
 }
