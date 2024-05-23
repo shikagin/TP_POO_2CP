@@ -23,12 +23,13 @@ import javafx.stage.Stage;
 public class AddPatientPage {
     private Stage primaryStage;
     private Label messageLabel;
+    Orthophoniste orthophoniste;
+    // les comptes des orthophonistes qui l'utilisent 
+    private HashSet<Orthophoniste> comptesUtilisateurs = new HashSet<Orthophoniste>();
 
-    // Liste des patients de l'orthophoniste
-    private HashSet<Patient> listePatients = new HashSet<Patient>();
-
-    public AddPatientPage(Stage primaryStage) {
+    public AddPatientPage(Stage primaryStage,Orthophoniste orthophoniste) {
         this.primaryStage = primaryStage;
+        this.orthophoniste= orthophoniste;
     }
 
     public void load(Scene scene) {
@@ -96,14 +97,20 @@ public class AddPatientPage {
             // Créer le patient avec le dossier
             Patient patient = new Patient(dossierPatient);
 
-            listePatients = loadlistePatientsFromFile();
-            if (listePatients == null) listePatients = new HashSet<Patient>();
-
-            // Ajouter le nouvel orthophoniste à la liste des comptes utilisateurs
-            listePatients.add(patient);
-
-            // Sauvegarder les données des comptes des utilisateurs
-            savelistePatientsToFile(listePatients);
+            comptesUtilisateurs = loadComptesOrthophonisteFromFile();
+             if (comptesUtilisateurs.contains(orthophoniste)) {
+            	 comptesUtilisateurs.remove(orthophoniste);
+            }
+            
+             if (orthophoniste.getListePatients() == null) {
+            	 orthophoniste.setListePatients(new HashSet<>())  ;
+            	}
+             if (!orthophoniste.getListePatients().contains(patient))   orthophoniste.getListePatients().add(patient);
+           
+            comptesUtilisateurs.add(orthophoniste); // ajouter apres le changement
+            
+            saveComptesOrthophonisteToFile( comptesUtilisateurs); // sauvegarder les nouvelles données dans un fichier
+            
 
             setMessage("Le patient a été ajouté avec succès.", "green");
         });
@@ -112,7 +119,7 @@ public class AddPatientPage {
         Button backButton = new Button("Retour");
         backButton.getStyleClass().add("button-style");
         backButton.setOnAction(e -> {
-            MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage);
+            MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage,orthophoniste);
             menuPrincipal.load(scene);
         });
 
@@ -130,34 +137,30 @@ public class AddPatientPage {
         primaryStage.setScene(addPatientScene);
     }
 
-    public void savelistePatientsToFile(HashSet<Patient> listePatients) {
-        File f = new File("listPatients.ser");
+    public void saveComptesOrthophonisteToFile(HashSet<Orthophoniste> comptesUtilisateurs) {
+    	File f = new File ("comptesOrthophoniste.ser");
         try (FileOutputStream fileOut = new FileOutputStream(f);
              ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-            out.writeObject(listePatients);
+            out.writeObject(comptesUtilisateurs);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
-
-    public HashSet<Patient> loadlistePatientsFromFile() {
-        HashSet<Patient> listePatients = null;
-        File f = new File("listPatients.ser");
-        if (!f.exists()) {
-            // If the file doesn't exist, return an empty HashSet
-            return new HashSet<Patient>();
+    
+    public HashSet<Orthophoniste> loadComptesOrthophonisteFromFile() {
+        HashSet<Orthophoniste> comptesUtilisateurs = new HashSet<>();
+        File f = new File("comptesOrthophoniste.ser");
+        if (f.exists()) {
+            try (FileInputStream fileIn = new FileInputStream(f);
+                 ObjectInputStream in = new ObjectInputStream(fileIn)) {
+                comptesUtilisateurs = (HashSet<Orthophoniste>) in.readObject();
+            } catch (IOException | ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
-
-        try (FileInputStream fileIn = new FileInputStream(f);
-             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            listePatients = (HashSet<Patient>) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return listePatients;
+        return comptesUtilisateurs;
     }
-
     private void setMessage(String message, String color) {
         messageLabel.setText(message);
         messageLabel.setStyle("-fx-text-fill: " + color + ";");

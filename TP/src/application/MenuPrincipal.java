@@ -13,9 +13,11 @@ import javafx.stage.Stage;
 
 public class MenuPrincipal {
     private Stage primaryStage;
+    private Orthophoniste orthophoniste;
 
-    public MenuPrincipal(Stage primaryStage) {
+    public MenuPrincipal(Stage primaryStage, Orthophoniste orthophoniste) {
         this.primaryStage = primaryStage;
+        this.orthophoniste = orthophoniste;
     }
 
     public void load(Scene scene) {
@@ -38,32 +40,16 @@ public class MenuPrincipal {
         Button accountSettingsButton = createMenuButton("Paramètres du Compte");
         accountSettingsButton.setOnAction(e -> {
             // Navigate to Account Settings Page
-            // AccountSettingsPage accountSettingsPage = new AccountSettingsPage(primaryStage);
-            // accountSettingsPage.load(scene);
+            AccountSettingsPage accountSettingsPage = new AccountSettingsPage(primaryStage, orthophoniste);
+            accountSettingsPage.load(scene);
         });
 
-        // Option: Consulter le Dossier d'un Patient
-        Button viewPatientRecordsButton = createMenuButton("Consulter le Dossier d'un Patient");
-        viewPatientRecordsButton.setOnAction(e -> {
-            // Navigate to View Patient Records Page
-            ViewPatientRecordsPage viewPatientRecordsPage = new ViewPatientRecordsPage(primaryStage);
-            viewPatientRecordsPage.load(scene);
-        });
-
-        // Option: Ajouter un Patient
-        Button addPatientButton = createMenuButton("Créer un dossier pour un nouveau Patient");
-        addPatientButton.setOnAction(e -> {
-            // Navigate to Add Patient Page
-            AddPatientPage addPatientPage = new AddPatientPage(primaryStage);
-            addPatientPage.load(scene);
-        });
-
-        // Option: Supprimer un Patient
-        Button removePatientButton = createMenuButton("Supprimer le dossier d'un Patient");
-        removePatientButton.setOnAction(e -> {
-            // Navigate to Remove Patient Page
-            RemovePatientPage removePatientPage = new RemovePatientPage(primaryStage);
-            removePatientPage.load(scene);
+        // Option: Gestions des dossiers des patients
+        Button managePatientRecordsButton = createMenuButton("Gestions des dossiers des patients");
+        managePatientRecordsButton.setOnAction(e -> {
+            // Navigate to Manage Patient Records Page
+            GestionDossiersPatients gestionDossiersPatients = new GestionDossiersPatients(primaryStage, orthophoniste);
+            gestionDossiersPatients.load(scene);
         });
 
         // Option: Gestion des Tests et Anamnèses
@@ -72,6 +58,14 @@ public class MenuPrincipal {
             // Navigate to Manage Tests Page
             // ManageTestsPage manageTestsPage = new ManageTestsPage(primaryStage);
             // manageTestsPage.load(scene);
+        });
+        
+        // Option : Statistiques sur les Patients
+        Button statsPatientsButton = createMenuButton("Statistiques sur les Patients");
+        statsPatientsButton.setOnAction(e -> {
+            // Naviguer vers la Page de Gestion des Tests et Anamnèses
+            StatsPatientsPage statsPage = new StatsPatientsPage(orthophoniste);
+            statsPage.start(new Stage());
         });
 
         // Option: Se déconnecter de l'application
@@ -84,10 +78,9 @@ public class MenuPrincipal {
 
         menuOptions.getChildren().addAll(
                 accountSettingsButton,
-                viewPatientRecordsButton,
-                addPatientButton,
-                removePatientButton,
+                managePatientRecordsButton,
                 manageTestsButton,
+                statsPatientsButton,
                 logOutButton
         );
 

@@ -23,20 +23,21 @@ public class Orthophoniste implements Serializable {
 	private boolean connecte;
 	
 	// Liste des patients de l'orthophoniste
-	private HashSet<Patient> listePatients ;
+	private HashSet<Patient> listePatients = new HashSet<Patient>();
 	
 	// Agenda de l'orthophoniste
 	// Agenda agendaOrthophoniste ;
 	
 	
 	// Constructeur
-	public Orthophoniste(String nom ,String prenom , String numeroTelephone , String adresse , String adresseEmail , String motDePass) {
+	public Orthophoniste(String nom ,String prenom , String numeroTelephone , String adresse , String adresseEmail , String motDePass,HashSet<Patient> listePatients) {
 		this.nom = nom ;
 		this.prenom = prenom ;
 		this.numeroTelephone = numeroTelephone ;
 		this.adresse = adresse ;
 		this.adresseEmail = adresseEmail ;
 		this.motDePass = motDePass ;
+		this.listePatients=listePatients;
 	}
 	
 
@@ -483,7 +484,64 @@ public class Orthophoniste implements Serializable {
 	}
 	
 	
+	public String getNumTelephone() {
+		return this.numeroTelephone;
+	}
+	
+	public String getAddress() {
+		return this.adresse;
+	}
+	
+	
 	public void setConnecte(boolean connecte) {
 		this.connecte=connecte;
 	}
-}
+	
+	public void setMotDePass (String motDePass) {
+		this.motDePass=motDePass;
+	}
+	
+	public void setNom (String nom) {
+		this.nom=nom;
+	}
+	
+	public void setPrenom (String prenom) {
+		this.prenom=prenom;
+	}
+	
+	public void setNumTelephone (String num) {
+		this.numeroTelephone=num;
+	}
+	
+	public void setAdresse (String address) {
+		this.adresse=address;
+	}
+	
+	public void setAdressEmail (String address) {
+		this.adresseEmail=address;
+	}
+	
+	public  HashSet<Patient> getListePatients(){
+		return this.listePatients;
+	}
+	
+	public void setListePatients (HashSet<Patient> liste) {
+		this.listePatients=liste;
+	}
+	
+	 @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (o == null || getClass() != o.getClass()) return false;
+	        Orthophoniste that = (Orthophoniste) o;
+	        return Objects.equals(adresseEmail, that.adresseEmail) && 
+	               Objects.equals(motDePass, that.motDePass);
+	    }
+
+	    @Override
+	    public int hashCode() {
+	        return Objects.hash(adresseEmail, motDePass);
+	    }
+	}
+	
+	

@@ -21,10 +21,12 @@ import javafx.stage.Stage;
 
 public class RemovePatientPage {
     private Stage primaryStage;
+    Orthophoniste orthophoniste;
     private HashSet<Patient> listePatients = new HashSet<Patient>();
 
-    public RemovePatientPage(Stage primaryStage) {
+    public RemovePatientPage(Stage primaryStage,Orthophoniste orthophoniste) {
         this.primaryStage = primaryStage;
+        this.orthophoniste= orthophoniste;
     }
 
     public void load(Scene previousScene) {
@@ -89,7 +91,7 @@ public class RemovePatientPage {
         // Back button
         Button backButton = new Button("Retour");
         backButton.setOnAction(e -> {
-        	MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage);
+        	MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage,orthophoniste);
             menuPrincipal.load(previousScene);
         });
 

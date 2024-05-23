@@ -19,10 +19,12 @@ import javafx.stage.Stage;
 
 public class PatientsListTests {
     private Stage primaryStage;
+    Orthophoniste orthophoniste;
     private HashSet<Patient> listePatients = new HashSet<Patient>();
     
-    public PatientsListTests(Stage primaryStage) {
+    public PatientsListTests(Stage primaryStage,Orthophoniste orthophoniste) {
         this.primaryStage = primaryStage;
+        this.orthophoniste=orthophoniste;
     }
 
     public void load(Scene scene) {
@@ -41,7 +43,7 @@ public class PatientsListTests {
         labelsBox.setAlignment(Pos.CENTER);
         labelsBox.setPadding(new Insets(20));
 
-        listePatients = loadlistePatientsFromFile();
+        listePatients = orthophoniste.getListePatients();
 
         for (Patient patient : listePatients) {
             String buttonText = "\"" + patient.getDossierPatient().getNom() + " " +
@@ -49,7 +51,7 @@ public class PatientsListTests {
                                 patient.getDossierPatient().getAge() + " ans";
             Button button = createLightGrayButton(buttonText);
             button.setOnAction(e -> {
-                PatientTestPage patientTestsPage = new PatientTestPage(primaryStage, patient);
+                PatientTestPage patientTestsPage = new PatientTestPage(primaryStage, patient,orthophoniste);
                 patientTestsPage.load(scene);
             });
             labelsBox.getChildren().add(button);
@@ -61,7 +63,7 @@ public class PatientsListTests {
         Button backButton = new Button("Retour");
         backButton.getStyleClass().add("button-style");
         backButton.setOnAction(e -> {
-            ViewPatientRecordsPage viewPatientRecordsPage = new ViewPatientRecordsPage(primaryStage);
+            ViewPatientRecordsPage viewPatientRecordsPage = new ViewPatientRecordsPage(primaryStage,orthophoniste);
             viewPatientRecordsPage.load(scene);
         });
 
@@ -73,24 +75,7 @@ public class PatientsListTests {
         primaryStage.setScene(patientAssessmentReportsScene);
     }
 
-    public HashSet<Patient> loadlistePatientsFromFile() {
-        HashSet<Patient> listePatients = null;
-        File f = new File("listPatients.ser");
-        if (!f.exists()) {
-            // If the file doesn't exist, return an empty HashSet
-            return new HashSet<Patient>();
-        }
-
-        try (FileInputStream fileIn = new FileInputStream(f);
-             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            listePatients = (HashSet<Patient>) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        return listePatients;
-    }
-
+   
     private Button createLightGrayButton(String text) {
         Button button = new Button(text);
         button.getStyleClass().add("light-gray-button"); // Assuming you have a CSS class for light gray buttons

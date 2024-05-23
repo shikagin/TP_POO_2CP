@@ -13,9 +13,10 @@ import javafx.stage.Stage;
 
 public class ViewPatientRecordsPage {
     private Stage primaryStage;
-
-    public ViewPatientRecordsPage(Stage primaryStage) {
+    Orthophoniste orthophoniste;
+    public ViewPatientRecordsPage(Stage primaryStage,Orthophoniste orthophoniste) {
         this.primaryStage = primaryStage;
+        this.orthophoniste=orthophoniste;
     }
 
     public void load(Scene scene) {
@@ -54,7 +55,7 @@ public class ViewPatientRecordsPage {
         Button patientTestReportsButton = createMenuButton("Compte rendu des tests du patient");
         patientTestReportsButton.setOnAction(e -> {
             
-        	PatientsListTests patientsListTests = new PatientsListTests(primaryStage);
+        	PatientsListTests patientsListTests = new PatientsListTests(primaryStage,orthophoniste);
         	patientsListTests.load(scene);
         });
 
@@ -62,7 +63,7 @@ public class ViewPatientRecordsPage {
         Button patientAssessmentReportsButton = createMenuButton("Bilans orthophoniques du patient");
         patientAssessmentReportsButton.setOnAction(e -> {
           
-        	PatientsListBOs patientsListBOs = new PatientsListBOs(primaryStage);
+        	PatientsListBOs patientsListBOs = new PatientsListBOs(primaryStage,orthophoniste);
         	patientsListBOs.load(scene);
         });
 
@@ -70,7 +71,7 @@ public class ViewPatientRecordsPage {
         Button followUpListsButton = createMenuButton("Listes de suivis");
         followUpListsButton.setOnAction(e -> {
             
-        	 PatientList_FicheDeSuivi patientList_FicheDeSuivi = new  PatientList_FicheDeSuivi(primaryStage);
+        	 PatientList_FicheDeSuivi patientList_FicheDeSuivi = new  PatientList_FicheDeSuivi(primaryStage,orthophoniste);
         	 patientList_FicheDeSuivi.load(scene);
         });
 
@@ -88,8 +89,8 @@ public class ViewPatientRecordsPage {
         Button backButton = new Button("Retour");
         backButton.getStyleClass().add("button-style");
         backButton.setOnAction(e -> {
-            HomePage homePage = new HomePage(primaryStage);
-            homePage.load(scene);
+            MenuPrincipal menuPage = new MenuPrincipal(primaryStage, orthophoniste);
+            menuPage.load(scene);
         });
         root.setBottom(backButton);
 

@@ -23,10 +23,12 @@ public class PatientTestPage {
     private Stage primaryStage;
     private Patient patient;
     private HashSet<Patient> listePatients = new HashSet<Patient>();
+    Orthophoniste orthophoniste;
 
-    public PatientTestPage(Stage primaryStage, Patient patient) {
+    public PatientTestPage(Stage primaryStage, Patient patient,Orthophoniste orthophoniste) {
         this.primaryStage = primaryStage;
         this.patient = patient;
+        this.orthophoniste=orthophoniste;
     }
 
     public void load(Scene previousScene) {
@@ -47,8 +49,7 @@ public class PatientTestPage {
         testsBox.setAlignment(Pos.CENTER);
         testsBox.setPadding(new Insets(20));
 
-        listePatients = loadlistePatientsFromFile();
-
+        listePatients = orthophoniste.getListePatients();
         for (Patient patient0 : listePatients) {
             if (patient0.getDossierPatient().getNom().equals(patient.getDossierPatient().getNom()) &&
                 patient0.getDossierPatient().getPrenom().equals(patient.getDossierPatient().getPrenom())) {
@@ -99,16 +100,7 @@ public class PatientTestPage {
         primaryStage.setScene(patientTestsScene);
     }
 
-    public HashSet<Patient> loadlistePatientsFromFile() {
-        HashSet<Patient> listePatients = null;
-        try (FileInputStream fileIn = new FileInputStream("listPatients.ser");
-             ObjectInputStream in = new ObjectInputStream(fileIn)) {
-            listePatients = (HashSet<Patient>) in.readObject();
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-        return listePatients;
-    }
+ 
 
     private Label createTestLabel(String text) {
         Label label = new Label(text);

@@ -28,6 +28,7 @@ public class SignUpPage {
 
     // les comptes des orthophonistes qui l'utilisent 
     private HashSet<Orthophoniste> comptesUtilisateurs = new HashSet<Orthophoniste>();
+    private HashSet<Patient> listePatients = new HashSet<Patient>();
 
     public SignUpPage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -118,7 +119,7 @@ public class SignUpPage {
                 alert.showAndWait();
             } else {
                 // Créer un nouvel orthophoniste avec les informations fournies
-                Orthophoniste nouvelOrthophoniste = new Orthophoniste(nom, prenom, numeroTelephone, adresse, adresseEmail, motDePass);
+                Orthophoniste nouvelOrthophoniste = new Orthophoniste(nom, prenom, numeroTelephone, adresse, adresseEmail, motDePass,listePatients);
                 
                 comptesUtilisateurs=loadComptesOrthophonisteFromFile();
                 if (comptesUtilisateurs==null)  comptesUtilisateurs=new HashSet<Orthophoniste>();
@@ -150,8 +151,8 @@ public class SignUpPage {
         // Back button
         Button backButton = new Button("Back");
         backButton.setOnAction(e -> {
-        	MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage);
-            menuPrincipal.load(scene);
+        	HomePage homePage = new HomePage (primaryStage);
+        	homePage.load(scene);
         });
 
         backButton.setOnAction(e -> {

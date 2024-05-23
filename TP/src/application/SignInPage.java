@@ -98,7 +98,7 @@ public class SignInPage {
                     orthophoniste.setConnecte(true);
                     authenticated = true;
                     setMessage("Connexion réussie !", "green");
-                    navigateToMenuPrincipal(scene);
+                    navigateToMenuPrincipal(scene, orthophoniste);
                     break;
                 }
             }
@@ -119,11 +119,6 @@ public class SignInPage {
         // Back button
         Button backButton = new Button("Back");
         backButton.setOnAction(e -> {
-        	MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage);
-            menuPrincipal.load(scene);
-        });
-
-        backButton.setOnAction(e -> {
             HomePage homePage = new HomePage(primaryStage);
             homePage.load(scene);
         });
@@ -139,8 +134,8 @@ public class SignInPage {
         messageLabel.setStyle("-fx-text-fill: " + color + ";");
     }
 
-    private void navigateToMenuPrincipal(Scene scene) {
-        MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage);
+    private void navigateToMenuPrincipal(Scene scene, Orthophoniste orthophoniste) {
+        MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage, orthophoniste);
         menuPrincipal.load(scene);
     }
 
