@@ -13,7 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -24,12 +23,12 @@ public class AddPatientPage {
     private Stage primaryStage;
     private Label messageLabel;
     Orthophoniste orthophoniste;
-    // les comptes des orthophonistes qui l'utilisent 
+    private Patient patient;
     private HashSet<Orthophoniste> comptesUtilisateurs = new HashSet<Orthophoniste>();
 
-    public AddPatientPage(Stage primaryStage,Orthophoniste orthophoniste) {
+    public AddPatientPage(Stage primaryStage, Orthophoniste orthophoniste) {
         this.primaryStage = primaryStage;
-        this.orthophoniste= orthophoniste;
+        this.orthophoniste = orthophoniste;
     }
 
     public void load(Scene scene) {
@@ -56,7 +55,7 @@ public class AddPatientPage {
         surenameField.setMaxWidth(200);
 
         TextField birthdayField = new TextField();
-        birthdayField.setPromptText("Date de naissance du patient ( jj / mm / yyyy )");
+        birthdayField.setPromptText("Date de naissance du patient (jj/mm/yyyy)");
         birthdayField.setMaxWidth(200);
 
         TextField birthPlaceField = new TextField();
@@ -73,58 +72,42 @@ public class AddPatientPage {
         messageLabel = new Label();
         form.getChildren().add(messageLabel);
 
-        // Submit Button
-        Button submitButton = new Button("Ajouter le Patient");
-        submitButton.getStyleClass().add("button-style");
-        submitButton.setOnAction(e -> {
-            // Handle form submission
+        // Continue Button
+        Button continueButton = new Button("Continuer");
+        continueButton.getStyleClass().add("button-style");
+        continueButton.setOnAction(e -> {
             String name = nameField.getText();
             String surename = surenameField.getText();
             String birthday = birthdayField.getText();
             String birthPlace = birthPlaceField.getText();
             String address = addressField.getText();
+            
 
-            // Convertir la date de naissance en LocalDate
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             LocalDate dateDeNaissance = LocalDate.parse(birthday, formatter);
-
-            // Calculer l'âge du patient
             int agePatient = Period.between(dateDeNaissance, LocalDate.now()).getYears();
+              InfoDossier infos = new InfoDossier (name,surename,agePatient,birthday,birthPlace,address);
 
-            // Créer le dossier du patient
-            Dossier dossierPatient = new Dossier(name, surename, agePatient, address, birthday, birthPlace);
-
-            // Créer le patient avec le dossier
-            Patient patient = new Patient(dossierPatient);
-
-            comptesUtilisateurs = loadComptesOrthophonisteFromFile();
-             if (comptesUtilisateurs.contains(orthophoniste)) {
-            	 comptesUtilisateurs.remove(orthophoniste);
+            if (agePatient > 18) {
+            	
+                AddPatientAdult addPatientAdult = new AddPatientAdult(primaryStage, orthophoniste, infos);
+                addPatientAdult.load(scene);
+            } else {
+                AddPatientKid addPatientKid = new AddPatientKid(primaryStage, orthophoniste, infos);
+                addPatientKid.load(scene);
             }
-            
-             if (orthophoniste.getListePatients() == null) {
-            	 orthophoniste.setListePatients(new HashSet<>())  ;
-            	}
-             if (!orthophoniste.getListePatients().contains(patient))   orthophoniste.getListePatients().add(patient);
-           
-            comptesUtilisateurs.add(orthophoniste); // ajouter apres le changement
-            
-            saveComptesOrthophonisteToFile( comptesUtilisateurs); // sauvegarder les nouvelles données dans un fichier
-            
-
-            setMessage("Le patient a été ajouté avec succès.", "green");
         });
 
         // Back Button
         Button backButton = new Button("Retour");
         backButton.getStyleClass().add("button-style");
         backButton.setOnAction(e -> {
-            MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage,orthophoniste);
+            MenuPrincipal menuPrincipal = new MenuPrincipal(primaryStage, orthophoniste);
             menuPrincipal.load(scene);
         });
 
         // Button Container
-        VBox buttonBox = new VBox(10, submitButton, backButton);
+        VBox buttonBox = new VBox(10, continueButton, backButton);
         buttonBox.setAlignment(Pos.CENTER);
         buttonBox.setPadding(new Insets(20));
 
@@ -137,30 +120,6 @@ public class AddPatientPage {
         primaryStage.setScene(addPatientScene);
     }
 
-    public void saveComptesOrthophonisteToFile(HashSet<Orthophoniste> comptesUtilisateurs) {
-    	File f = new File ("comptesOrthophoniste.ser");
-        try (FileOutputStream fileOut = new FileOutputStream(f);
-             ObjectOutputStream out = new ObjectOutputStream(fileOut)) {
-            out.writeObject(comptesUtilisateurs);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        
-    }
-    
-    public HashSet<Orthophoniste> loadComptesOrthophonisteFromFile() {
-        HashSet<Orthophoniste> comptesUtilisateurs = new HashSet<>();
-        File f = new File("comptesOrthophoniste.ser");
-        if (f.exists()) {
-            try (FileInputStream fileIn = new FileInputStream(f);
-                 ObjectInputStream in = new ObjectInputStream(fileIn)) {
-                comptesUtilisateurs = (HashSet<Orthophoniste>) in.readObject();
-            } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-        return comptesUtilisateurs;
-    }
     private void setMessage(String message, String color) {
         messageLabel.setText(message);
         messageLabel.setStyle("-fx-text-fill: " + color + ";");

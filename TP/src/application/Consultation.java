@@ -6,8 +6,8 @@ public class Consultation extends RendezVous {
     private final String duree;
     
     // Le constructeur de la classe Consultation
-	public Consultation(String date, String heure,Type type,String  nomPatient,String prenomPatient,int agePatient) {
-		super(date,heure,type);
+	public Consultation(String date, String heure,int agePatient) {
+		super(date,heure);
 		this.AgePatient=agePatient;
 		
 		// Determinons la duree de la consultation d'aprés l'age du patient 

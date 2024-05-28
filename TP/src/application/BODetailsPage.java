@@ -49,7 +49,7 @@ public class BODetailsPage {
         menuBox.getChildren().add(anamneseButton);
 
         Button testsButton = createMenuButton("Afficher les Tests du Patient");
-        testsButton.setOnAction(e -> displayTests(bo));
+      //  testsButton.setOnAction(e -> displayTests(bo));
         menuBox.getChildren().add(testsButton);
 
         Button diagnosticButton = createMenuButton("Afficher le Diagnostic");
@@ -122,7 +122,7 @@ public class BODetailsPage {
     
     
     // Méthode pour afficher les informations des tests du patient
-    private void displayTests(BO bo) {
+   /* private void displayTests(BO bo) {
         Stage popupStage = new Stage();
         popupStage.initModality(Modality.APPLICATION_MODAL);
         popupStage.initOwner(primaryStage);
@@ -156,7 +156,7 @@ public class BODetailsPage {
         popupScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
         popupStage.setScene(popupScene);
         popupStage.showAndWait();
-    }
+    }*/
 
 
     private Label createTestLabel(String text) {

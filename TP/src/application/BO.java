@@ -26,14 +26,14 @@ public class BO {
         System.out.println();
         
         // Afficher les épreuves cliniques
-        System.out.println("Epreuves Cliniques :");
+        /*System.out.println("Epreuves Cliniques :");
         if (listeEpreuves.length > 0) {
             for (EpreuveClinique epreuve : listeEpreuves) {
                 epreuve.afficherEpreuveClinique();
             }
         } else {
             System.out.println("Pas d'épreuves cliniques disponibles.");
-        }
+        }*/
         System.out.println();
         
         // Afficher le diagnostic

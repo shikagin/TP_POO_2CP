@@ -26,6 +26,10 @@ public class Objectif {
         return note;
     }
 	
+	public String getNom () {
+		return this.nom;
+	}
+	
 	
 	// Setter pour modifier la note de l'objectif
 	public void setNote (int noteObj) throws noteObjInacceptableException {

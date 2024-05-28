@@ -25,6 +25,11 @@ public class Orthophoniste implements Serializable {
 	// Liste des patients de l'orthophoniste
 	private HashSet<Patient> listePatients = new HashSet<Patient>();
 	
+	private HashSet<Consultation> listeConsultation = new HashSet<Consultation>();
+	private HashSet<SeanceDeSuivi> listeSeancesSuivi = new HashSet<SeanceDeSuivi>();
+	private HashSet<AtelierDeGroupe> listeAtelierDeGroupe = new HashSet<AtelierDeGroupe>();
+	private HashSet<Patient> listePatientsConsultation = new HashSet<Patient>();
+	
 	// Agenda de l'orthophoniste
 	// Agenda agendaOrthophoniste ;
 	
@@ -294,7 +299,7 @@ public class Orthophoniste implements Serializable {
 	}
 	
 	// Méthode pour sauvegarder un test
-	public void sauvgarderTest(Patient patient, Test test ) {
+	/*public void sauvgarderTest(Patient patient, Test test ) {
 		ArrayList<BO> listeBOs= patient.getDossierPatient().getListeBOs();
 		BO bo = listeBOs.get(listeBOs.size());
 		EpreuveClinique[] listeEpreuveCliniques = bo.getListeEpreuves();
@@ -310,7 +315,7 @@ public class Orthophoniste implements Serializable {
 		EpreuveClinique epreuveClinique = listeEpreuveCliniques[listeEpreuveCliniques.length-1];
 		epreuveClinique.modifierTest(ancienTest, nouveauTest);
 		
-	}
+	}*/
 	
 	
 	// Méthode pour consulter le dossier d'un patient 
@@ -529,6 +534,53 @@ public class Orthophoniste implements Serializable {
 		this.listePatients=liste;
 	}
 	
+	public HashSet<Consultation> getListeConsultation (){
+		return this.listeConsultation;
+	}
+	
+	public HashSet<SeanceDeSuivi> getListeSeancesSuivi (){
+		return this.listeSeancesSuivi;
+	}
+	
+	public HashSet<AtelierDeGroupe> getListeAtelierDeGroupe (){
+		return this.listeAtelierDeGroupe;
+	}
+	
+	public HashSet<Patient> getListePatientsConsultation (){
+		return this.listePatientsConsultation;
+	}
+	
+	
+	
+	public void setListeConsultation (HashSet<Consultation> liste ) {
+		this.listeConsultation=liste;
+	}
+	
+	public void setListeSeanceDeSuivi (HashSet<SeanceDeSuivi> liste ) {
+		this.listeSeancesSuivi=liste;
+	}
+	
+	public void setListeAtelierDeGroupe (HashSet<AtelierDeGroupe> liste ) {
+		this.listeAtelierDeGroupe=liste;
+	}
+	
+	public void setListePatientsConsultation (HashSet<Patient> liste ) {
+		this.listePatientsConsultation=liste;
+	}
+   
+	
+	public void ajouterConsultation( Consultation c) {
+		if (!this.listeConsultation.contains(c)) this.listeConsultation.add(c);
+	}
+
+	
+	public void ajouterSeanceDeSuivi( SeanceDeSuivi s) {
+		if (!this.listeSeancesSuivi.contains(s)) this.listeSeancesSuivi.add(s);
+	}
+	
+	public void ajouterAtelierDeGroupe(AtelierDeGroupe a) {
+		if (!this.listeAtelierDeGroupe.contains(a)) this.listeAtelierDeGroupe.add(a);
+	}
 	 @Override
 	    public boolean equals(Object o) {
 	        if (this == o) return true;

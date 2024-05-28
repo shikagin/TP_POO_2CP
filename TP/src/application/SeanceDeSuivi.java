@@ -1,15 +1,15 @@
 package application;
 public class SeanceDeSuivi extends RendezVous {
     private int NmrPatient;
-    private enum Etat {PRESENTIEL,ENLIGNE};
-    private final String duree="1h";
     private Etat etat;
+    private final String duree="1h";
+
     
     // Le constructeur de la classe SeanceDeSuivi 
-	public SeanceDeSuivi(String date, String heure, Type type,int NmrPatient,Etat etat) {
-		super (date,heure,type);
-	 this.NmrPatient=NmrPatient;
-	 this.etat=etat;
+	public SeanceDeSuivi(String date, String heure,int NmrPatient,Etat etat) {
+		super (date,heure);
+	    this.NmrPatient=NmrPatient;
+	     this.etat=etat;
 	}
 	
 	// Les getters de la classe SeanceDesuivi 

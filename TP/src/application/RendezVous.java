@@ -6,10 +6,10 @@ public class RendezVous {
     protected Type type;
     
 	// Le constructeur de la classe RendezVous 
-	 public RendezVous(String date, String heure,Type type) {
+	 public RendezVous(String date, String heure) {
 		this.date=date;
 		this.heure=heure;
-		this.type=type;
+	
 	}
 	
 	 // Les Getters

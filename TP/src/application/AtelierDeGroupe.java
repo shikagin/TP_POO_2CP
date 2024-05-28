@@ -4,8 +4,8 @@ public class AtelierDeGroupe extends RendezVous {
     private int ListePatients[];  // liste qui contient les numéros des dossiers des patients
     private final String duree ="1h";
     
-	public AtelierDeGroupe(String date,String heure,Type type,String thematique,int ListePatients[]) {
-		super(date,heure,type);
+	public AtelierDeGroupe(String date,String heure,String thematique,int ListePatients[]) {
+		super(date,heure);
 		this.Thematique=thematique;
 		this.ListePatients=ListePatients;
 	}

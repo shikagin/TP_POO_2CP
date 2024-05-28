@@ -117,12 +117,14 @@ public class SignInPage {
         root.setCenter(form);
 
         // Back button
-        Button backButton = new Button("Back");
+        Button backButton = new Button("Retour");
+        backButton.getStyleClass().add("button-style");
         backButton.setOnAction(e -> {
-            HomePage homePage = new HomePage(primaryStage);
-            homePage.load(scene);
+            HomePage viewPatientRecordsPage = new HomePage(primaryStage);
+            viewPatientRecordsPage.load(scene);
         });
 
+        BorderPane.setAlignment(backButton, Pos.CENTER);
         root.setBottom(backButton);
 
         Scene signInScene = new Scene(root, 800, 700);

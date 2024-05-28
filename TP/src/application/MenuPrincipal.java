@@ -56,16 +56,24 @@ public class MenuPrincipal {
         Button manageTestsButton = createMenuButton("Gestion des Tests et Anamnèses");
         manageTestsButton.setOnAction(e -> {
             // Navigate to Manage Tests Page
-            // ManageTestsPage manageTestsPage = new ManageTestsPage(primaryStage);
-            // manageTestsPage.load(scene);
+            PatientsListManageTests manageTestsPage = new PatientsListManageTests(primaryStage, orthophoniste);
+            manageTestsPage.load(scene);
         });
-        
+
         // Option : Statistiques sur les Patients
         Button statsPatientsButton = createMenuButton("Statistiques sur les Patients");
         statsPatientsButton.setOnAction(e -> {
-            // Naviguer vers la Page de Gestion des Tests et Anamnèses
+            // Navigate to Stats Patients Page
             StatsPatientsPage statsPage = new StatsPatientsPage(orthophoniste);
             statsPage.start(new Stage());
+        });
+
+        // Option: Gestion des rendez-vous
+        Button gestionRendezVousButton = createMenuButton("Gestion des rendez-vous");
+        gestionRendezVousButton.setOnAction(e -> {
+            // Navigate to GestionRendezVous Page
+            GestionRendezVous gestionRendezVous = new GestionRendezVous(primaryStage, orthophoniste);
+            gestionRendezVous.load(scene);
         });
 
         // Option: Se déconnecter de l'application
@@ -81,6 +89,7 @@ public class MenuPrincipal {
                 managePatientRecordsButton,
                 manageTestsButton,
                 statsPatientsButton,
+                gestionRendezVousButton,
                 logOutButton
         );
 
