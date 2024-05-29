@@ -8,7 +8,7 @@ public class Anamnese {
 	
 	public Anamnese() {
         listeQuestions = new HashSet<>();
-    }
+	}
 
     public void ajouterQuestion(QstLibreAnamnese question) {
         listeQuestions.add(question);
@@ -44,5 +44,9 @@ public class Anamnese {
             }
         }
     }
+
+	public Set<QstLibreAnamnese> getQuestions() {
+		return listeQuestions;
+	}
 
 }

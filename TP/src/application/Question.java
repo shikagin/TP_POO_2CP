@@ -1,8 +1,13 @@
 package application;
 
+import java.io.Serializable;
 import java.util.Scanner ; 
-public class Question {
-    protected int score ; 
+public class Question implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected int score ; 
     protected String enonce ; 
 
     public Question (String enonce){

@@ -23,11 +23,14 @@ import javafx.stage.Stage;
 
 public class SignInPage {
     private Stage primaryStage;
-    private HashSet<Orthophoniste> comptesUtilisateurs;
+    private HashSet<Orthophoniste> comptesUtilisateurs = loadComptesOrthophonisteFromFile();
     private Label messageLabel;
 
     public SignInPage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+        if (comptesUtilisateurs == null) {
+            comptesUtilisateurs = new HashSet<>();
+        }
     }
 
     public void load(Scene scene) {
@@ -88,9 +91,6 @@ public class SignInPage {
                 return;
             }
 
-            // réupérer la liste des comptes des orthophonistes
-            comptesUtilisateurs = loadComptesOrthophonisteFromFile();
-
             boolean authenticated = false;
             // recherche du compte dans les comptes déjà crées
             for (Orthophoniste orthophoniste : comptesUtilisateurs) {
@@ -129,6 +129,7 @@ public class SignInPage {
 
         Scene signInScene = new Scene(root, 800, 700);
         primaryStage.setScene(signInScene);
+        signInScene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
     }
 
     private void setMessage(String message, String color) {
@@ -142,7 +143,7 @@ public class SignInPage {
     }
 
     public HashSet<Orthophoniste> loadComptesOrthophonisteFromFile() {
-        HashSet<Orthophoniste> comptesUtilisateurs = null;
+        HashSet<Orthophoniste> comptesUtilisateurs = new HashSet<>();
         try (FileInputStream fileIn = new FileInputStream("comptesOrthophoniste.ser");
              ObjectInputStream in = new ObjectInputStream(fileIn)) {
             comptesUtilisateurs = (HashSet<Orthophoniste>) in.readObject();

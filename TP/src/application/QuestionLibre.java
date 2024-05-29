@@ -1,13 +1,20 @@
 package application;
 
-public class QuestionLibre extends Question {
-    protected String reponse ;
+import java.io.Serializable;
+
+public class QuestionLibre extends Question implements Serializable {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	protected String reponse ;
     
    
 
     public QuestionLibre (String enonce) {
         super(enonce) ; 
     }
+
     
     //LES AFFICHAGES 
     public void afficherReponse (){
@@ -15,13 +22,13 @@ public class QuestionLibre extends Question {
     }
 
     //getters and setters 
-    // public void setReponse (String reponse){
-    //     this.reponse = reponse ; 
-    // }
+    public void setReponse (String reponse){
+         this.reponse = reponse ; 
+    }
 
-    // public String getReponse (){
-    //     return reponse ; 
-    // }
+    public String getReponse (){
+         return reponse ; 
+    }
 
    
 }
